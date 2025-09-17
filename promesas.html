@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Nuestras Promesas de Amor</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(135deg, #ffe4e1, #fff0f5, #f0fff4);
+      font-family: "Segoe UI", sans-serif;
+      padding: 30px;
+    }
+    .caja {
+      background: #ffffffdd;
+      backdrop-filter: blur(6px);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 10px;
+      color: #d6336c;
+    }
+    .linea {
+      border-top: 2px dashed #d6336c;
+      margin: 20px 0;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .btn-custom {
+      background: #d6336c;
+      color: white;
+    }
+    .btn-custom:hover {
+      background: #c2185b;
+    }
+    .subtitulo {
+      color: #6a1b9a;
+      font-weight: bold;
+    }
+    #fraseAmor {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #d6336c;
+      text-align: center;
+      margin-bottom: 20px;
+      animation: aparecer 2s ease-in-out;
+    }
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .mensaje-inicial {
+      background: #fff5f7;
+      border-left: 4px solid #d6336c;
+      padding: 15px;
+      border-radius: 10px;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="caja">
+    <h1>💖 Nuestras Promesas 💖</h1>
+    <p id="fraseAmor"></p>
+
+    <div class="mensaje-inicial">
+      Mi amor, quiero que sepas que te quiero muchísimo 💕.  
+      Deseo tenerte en mi presente y en mi futuro, compartir contigo cada día, cada sueño y cada meta.  
+      Si eso también es lo que tú quieres, llenemos juntos este espacio con lo más profundo y sincero de nuestro corazón.  
+      Que nuestras palabras sean promesas vivas, y que cada acción sea la manera de cumplirlas.  
+      Porque contigo quiero crecer, aprender y amar de verdad. Te quiero munchisisisisisimooooooo✨.
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label fw-bold">🌟 Deseo del Día</label>
+      <input type="text" id="deseo" class="form-control" placeholder="Ej: Hoy deseo que ambos sonriamos más...">
+    </div>
+
+    <div class="linea"></div>
+
+    <h4 class="subtitulo">Promesas de Yuly💕</h4>
+    <textarea id="ella" class="form-control mb-3" rows="5" placeholder="Escribe tus promesas aquí..."></textarea>
+
+    <h4 class="subtitulo">Promesas de Jesus 💙</h4>
+    <textarea id="el" class="form-control mb-3" rows="5" placeholder="Escribe tus promesas aquí..."></textarea>
+
+    <h4 class="subtitulo">Promesas de Ambos 🌹</h4>
+    <textarea id="ambos" class="form-control mb-4" rows="5" placeholder="Promesas que cumplirán juntos..."></textarea>
+
+    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+      <button class="btn btn-custom" onclick="window.print()">🖨️ Imprimir / Guardar en PDF</button>
+      <button class="btn btn-secondary" onclick="borrarTodo()">🗑️ Borrar todo</button>
+    </div>
+
+    <p class="text-center mt-4 text-muted">
+      <small>
+        Nota: El amor se cultiva con detalles, paciencia y sueños compartidos. 💞
+      </small>
+    </p>
+  </div>
+
+  <script>
+    // Frases de amor
+    const frases = [
+      "El amor verdadero no se busca, se construye cada día 💕",
+      "Tenerte a ti es tener mi lugar favorito en el mundo 🌎❤️",
+      "No prometo solucionarlo todo, pero sí estar contigo siempre 🤝",
+      "Nuestro amor es mi razón de sonreír cada mañana ☀️💖",
+      "Contigo quiero un presente hermoso y un futuro eterno ✨",
+      "Eres mi casualidad más bonita y mi destino favorito 💞",
+      "Amarte es mi decisión de todos los días 🌹"
+    ];
+
+    function mostrarFrase() {
+      const frase = frases[Math.floor(Math.random() * frases.length)];
+      document.getElementById("fraseAmor").textContent = frase;
+    }
+    mostrarFrase();
+
+    // Guardar automáticamente en localStorage
+    const campos = ["deseo", "ella", "el", "ambos"];
+    campos.forEach(id => {
+      const campo = document.getElementById(id);
+      campo.value = localStorage.getItem(id) || "";
+      campo.addEventListener("input", () => {
+        localStorage.setItem(id, campo.value);
+      });
+    });
+
+    // Borrar todo con confirmación
+    function borrarTodo() {
+      if (confirm("¿Seguro que quieres borrar todas las promesas?")) {
+        campos.forEach(id => {
+          document.getElementById(id).value = "";
+          localStorage.removeItem(id);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
